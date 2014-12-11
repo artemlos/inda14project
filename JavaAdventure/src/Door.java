@@ -1,19 +1,36 @@
-
+/**
+ * The door class stores the next room and a password.
+ * @author Artem Los
+ *
+ */
 public class Door {
 	private Room room;
 	private String password;
 	
+	/**
+	 * The initialisation of a door.
+	 * @param room The room the door should lead to.
+	 * @param password The password required to open the door.
+	 */
 	public Door(Room room, String password)
 	{
 		this.room = room;
 		this.password = password;
 	}
 	
+	/**
+	 * Returns the room object.
+	 * @return A room.
+	 */
 	public Room getRoom()
 	{
 		return room;
 	}
 	
+	/**
+	 * Checks whether a room exists.
+	 * @return true if a room exists, false otherwise.
+	 */
 	public boolean hasDoor()
 	{
 		if(room == null)
@@ -42,7 +59,7 @@ public class Door {
     /**
      * Check whether the provided password equals to the password in the room.
      * @param password
-     * @return
+     * @return true if correct password, false otherwise.
      */
     public boolean doUnlock(String password)
     {

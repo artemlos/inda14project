@@ -13,7 +13,7 @@ import java.util.Random;
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
+ * @author  Michael Kölling and David J. Barnes. (modified by Artem Los 2014.12.10)
  * @version 2011.08.10
  */
 
@@ -36,7 +36,9 @@ public class Game
      */
     
 	private Room outside, D, E, F, TekHogUnderground, D2, D3, D3_1, DCompLab;
-	private int tweetCount = 20;
+	
+	private static final int MAX_TWEETS = 20;
+	private int tweetCount = MAX_TWEETS;
 	
 	
     private void createRooms()
@@ -156,7 +158,7 @@ public class Game
             	doAsk(command);
             	break;
             case TWEET:
-            	tweetCount--;
+            	doTweet(command);
             	break;
             case UNLOCK:
             	System.out.println("What should we unlock?");
@@ -198,6 +200,19 @@ public class Game
         }
         
 
+    }
+    
+    private void doTweet(Command command)
+    {
+    	if(command.getSecondWord().toLowerCase().contains("komm14"))
+    	{
+    		tweetCount--;
+    	}
+    	else
+    	{
+    		System.out.println("Don't forget the 'komm14' tag.");
+    	}
+    	
     }
     
     /** 
@@ -304,10 +319,10 @@ public class Game
     {
     	if(!currentRoom.equals(outside))
     	{
-	    	if(tweetCount  == 20)
+	    	if(tweetCount  == MAX_TWEETS)
 	    	{
 	    		E.setExit("east", null);
-	    		return "Hi! The course has now started and all doors are locked. In order to pass the course, 20 tweets have to be written. Use the 'tweet' command to perform this task. When done, tell me.";
+	    		return "Hi! The course has now started and all doors are locked. In order to pass the course, "+ MAX_TWEETS+ " tweets have to be written. Use the 'tweet' command to perform this task. When done, tell me.";
 	    	}
 	    	else if (tweetCount > 0)
 	    	{
